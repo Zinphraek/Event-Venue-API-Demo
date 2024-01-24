@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <title>Confirmation Email</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .subject {
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    Dear <span th:text="${recipientName}"></span>,
+</p>
+
+<p>
+    This is an automated email to confirm that we have <span th:text="${appointmentStatus}"></span>
+    your appointment scheduled on <span th:text="${#temporals.format(appointmentDate, 'MMMM dd, yyyy')}"></span> at
+    <span
+            th:text="${#temporals.format(appointmentDate, 'hh:mm a')}"></span>.
+</p>
+
+<p>Please keep this email for your records.</p>
+
+<p>
+    NOTE: This mailbox is not monitored. Please do not reply to this email. If you have any questions
+    or need further assistance, kindly <a th:href="'mailto:' + ${supportServiceEmail}">email</a> or call our support
+    team at
+    <span th:text="${supportServicePhone}"></span> or
+    visit our <a
+        th:href="${websiteLink}">website</a> for more
+    information.
+</p>
+
+<p>
+    Thank you for doing business with us.
+</p>
+
+<p>Best regards,</p>
+
+<p>
+    Le Prestige Hall, Inc<br>
+</p>
+
+</body>
+</html>

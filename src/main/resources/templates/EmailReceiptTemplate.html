@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Payment Received – Thank You!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .subject {
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<p th:text="'Dear ' + ${customerName} + ','"></p>
+
+<p>
+    Thank you for your recent payment. We greatly value your trust and business relationship with us,
+    and are looking forward to serve you again in the future.
+</p>
+
+<p>
+    For a detailed breakdown and further information regarding the payment, please refer to the
+    attached receipt below.
+    Should you have any questions or require clarification about any aspect of this payment or any
+    other matter, do not hesitate to reach out to our customer service by phone at <span
+        th:tel="${customerServicePhoneNumber}"></span>
+    or by email at <a th:href="'mailto:' + ${customerServiceEmail}"></a>.
+</p>
+
+<p>
+    Thank you for choosing Le Prestige Hall. Have a wonderful day!
+</p>
+
+<p>
+    Warm regards,
+    <br>
+    Le Prestige Hall, Inc
+</p>
+
+</body>
+</html>

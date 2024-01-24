@@ -1,0 +1,85 @@
+server:
+  port: 8085
+
+# Spring application configuration
+spring:
+  application:
+    name: le-prestige-hall-api
+
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-sources[0]:
+            endpoint: ${KEY_VAULT_ENDPOINT}
+
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: ${GOOGLE-APP-USERNAME}
+    password: ${GOOGLE-APP-PWD}
+    port: 587
+    properties:
+      mail:
+        mime:
+          charset: UTF-8
+        smtp:
+          auth: true
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+          starttls:
+            enable: true
+            required: true
+    protocol: smtp
+    test-connection: false
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            client-id: ${KEYCLOAK-CLIENT-ID}
+            client_secret: ${KEYCLOAK-CLIENT-SECRET}
+            authorization-grant-type: ${KEYCLOAK-AUTH-GRT-TYPE}
+            scope: ${KEYCLOAK-SCOPE}
+            issuer-uri: ${KEYCLOAK-ISSUER-URI}
+            jwk-set-uri: ${KEYCLOAK-JWK-SET-URI}
+          claims:
+            aud: leprestigehallapp
+
+
+  datasource:
+    platform: postgres
+    url: ${DB-URL}
+    username: ${DB-USERNAME}
+    password: ${DB-PASSWORD}
+    driverClassName: org.postgresql.Driver
+
+# Azure Blob Storage configuration
+azure:
+  storage:
+    account-name: ${AZ-STORAGE-ACT-NAME}
+    account-key: ${AZ-STORAGE-ACT-KEY}
+    container-name: media
+
+# Twilio configuration
+twilio:
+  account:
+    sid: ${TWILIO-ACT-SID}
+  auth:
+    token: ${TWILIO-AUTH-TOKEN}
+  phone:
+    number: ${TWILIO-SENDER-NUMBER}
+
+# App allowed urls
+
+appAllowedUrls: ${APP-ALLOWED-URLS}

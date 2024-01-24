@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Invoice</title>
+    <meta charset="UTF-8"/>
+</head>
+<body style="width: 97%; max-width: 970px; margin: 0 auto;">
+<!-- Invoice Header -->
+<table style="width: 100%;">
+    <tr style="width: 100%;">
+        <!-- Logo -->
+        <td style="text-align: left; margin-left: 0;">
+            <img style="height: 56px; width: 56px;" alt="Le Prestige Hall"
+                 src="src/main/resources/static/images/logo.png"/>
+        </td>
+        <!-- Invoice -->
+        <td style="text-align: right;">
+            <h1
+                    style="font-size: 1.875rem; color: blue; font-weight: bold; margin-right: 0;
+           text-transform: uppercase; letter-spacing: 0.025em;">Invoice</h1>
+        </td>
+    </tr>
+</table>
+
+<table style="width: 100%">
+    <tr style="width: 100%">
+        <!-- Company Name -->
+        <td style="margin-left: 0">
+            <h2 style="color:blue; padding-left: 0;">Le Prestige Hall, Inc</h2>
+        </td>
+
+        <!-- Invoice number -->
+        <td style="text-align:right; margin-right:0; vertical-align: middle;">
+            <h2 style="font-weight: bold; margin-right: 0; padding-right: 0; color: blue;"
+                th:text="${'Invoice #: ' + invoice.invoiceNumber}">
+            </h2>
+        </td>
+    </tr>
+</table>
+
+<table style="width: 100%">
+    <!-- Company Info -->
+    <tr style="width: 100%; margin: 0;">
+        <td style="margin: 0; vertical-align: middle;">
+            <h3 style="width: 18%; float: left; text-align: left; padding-top: 0; padding-bottom: 0;">
+                Phone:</h3>
+            <p style="width: 81%; float: right; text-align: left; padding-top: 0.3rem; padding-bottom: 0;"
+               th:text="${facilityInfo.customerServicePhoneNumber}"></p>
+        </td>
+
+        <!-- Invoice Date -->
+        <td style="text-align:right; margin: 0; vertical-align: middle;">
+            <h3 style="width:69%; float:left; text-align: right; margin-right: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                Date: </h3>
+            <p style="width:30%; float:right; margin-left: 0; padding-top: 0.3rem; padding-bottom: 0;"
+               th:text="${issuedDate}"></p>
+        </td>
+    </tr>
+
+    <tr style="margin: 0;">
+        <td style="margin: 0; vertical-align: middle;">
+            <h3 style="width: 18%; float: left; text-align: left; padding-top: 0; padding-bottom: 0;">
+                Email: </h3>
+            <p style="width: 81%; float: right; text-align: left; padding-top: 0.3rem; padding-bottom: 0;"
+               th:text="${facilityInfo.invoicesEmailAddress}"></p>
+        </td>
+
+        <!-- Payment Term -->
+        <td style="text-align:right; margin-right:0; vertical-align: middle; padding-top: 0; padding-bottom: 0;">
+            <h3 style="width:59%; float:left; text-align: right; margin-right: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                Payment Term: </h3>
+            <p style="width:40%; float:right; margin-left: 0; padding-top: 0.3rem; padding-bottom: 0;">
+                Full By
+                Due
+                Date</p>
+        </td>
+    </tr>
+
+    <tr style="margin: 0;">
+        <!-- Address -->
+        <td style="margin: 0;">
+            <!-- Street Address -->
+            <p style=" padding-top: 0; padding-bottom: 0;" th:text="${facilityInfo.address.street}"></p>
+            <!-- City, State, Zip Code -->
+            <p style=" padding-top: 0; padding-bottom: 0;">
+                <span th:text="${facilityInfo.address.city}"></span>,
+                <span th:text="${facilityInfo.address.state}"></span>
+                <span th:text="${facilityInfo.address.zipCode}"></span>
+            </p>
+        </td>
+
+        <!-- Due Date -->
+        <td style="text-align:right; margin-right:0; vertical-align: middle; padding-top: 0; padding-bottom: 0;">
+            <h3 style="width:69%; float:left; text-align: right; margin-right: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
+                Due Date: </h3>
+            <p style="width:30%; float:right; margin-left: 0; padding-top: 0.3rem; padding-bottom: 0;"
+               th:text="${dueDate}"></p>
+        </td>
+    </tr>
+</table>
+
+<!-- Billing Info -->
+<table style="width: 100%; background-color: whiteSmoke; border-radius: 6px; margin-bottom: 1rem;">
+    <tr style="width: 100%; padding-left: 1rem; padding-right: 1rem; justify-content: center;">
+        <!-- Billing Info Header -->
+        <th colspan="2"
+            style="width: 100%; margin-bottom: 1rem; text-align: center; justify-content: center;">
+            <h2>Billing Information</h2>
+        </th>
+    </tr>
+    <!-- Billing Info Body -->
+    <tbody style="width: 100%; padding-left: 1rem; padding-right: 1rem;">
+    <tr style="width: 100%; margin: 0; padding-bottom: 0;">
+        <!-- Billing Info Body - Rows -->
+        <td style="padding-left: 1rem; padding-top: 0; padding-bottom: 0;">
+            <h3 style="padding-top: 0; padding-bottom: 0;">Name</h3>
+        </td>
+        <td
+                style="text-align: right; padding-right: 1rem; padding-left: 0.75rem; padding-top: 0; padding-bottom: 0;">
+            <p style="padding-top: 0; padding-bottom: 0;"
+               th:text="${user.firstName + ' ' + user.lastName}"></p>
+        </td>
+    </tr>
+
+    <tr style="width: 100%; margin: 0;">
+        <td style="padding-left: 1rem; padding-top: 0; padding-bottom: 0;">
+            <h3 style="padding-top: 0; padding-bottom: 0;">Phone</h3>
+        </td>
+        <td style="text-align: right; padding-right: 1rem; padding-left: 0.75rem; padding-top: 0; padding-bottom: 0;">
+            <p style="padding-top: 0; padding-bottom: 0;" th:text="${user.phone}"></p>
+        </td>
+    </tr>
+
+    <tr style="width: 100%; margin: 0;">
+        <td style="padding-left: 1rem; padding-top: 0; padding-bottom: 0;">
+            <h3 style="padding-top: 0; padding-bottom: 0;">Email</h3>
+        </td>
+        <td style="text-align: right; padding-right: 1rem; padding-left: 0.75rem;  padding-top: 0; padding-bottom: 0;">
+            <p style="padding-top: 0; padding-bottom: 0;" th:text="${user.email}"></p>
+        </td>
+    </tr>
+
+    <tr style="width: 100%; margin: 0;">
+        <td style="width: 50%; padding-left: 1rem; padding-top: 0; padding-bottom: 0;">
+            <h3 style="padding-top: 0; padding-bottom: 0;">Address</h3>
+        </td>
+        <td style="width: 50%; text-align: right; padding-right: 1rem; padding-left: 0.75rem; padding-top: 0; padding-bottom: 0;">
+            <p style="padding-top: 0; padding-bottom: 0;">
+                <span th:text="${user.street}"></span>,
+                <span th:text="${user.city}"></span>,
+                <span th:text="${user.state}"></span>
+                <span th:text="${user.zipCode}"></span>
+            </p>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+<!-- Invoice Items -->
+<div>
+    <table
+            style="width: 100%; border: 1px solid rgb(209 213 219); border-radius: 4px; margin-bottom: 1rem;">
+        <thead>
+        <tr style="background-color: rgb(234 179 8); color: white;">
+            <th th:each="col, colStat : ${columns}"
+                th:class="${#strings.concat(colStat.first ? 'radius-left ' : '', colStat.last ? ' radius-right' : '')}"
+                th:style="'grid-column: span ' + col.span"
+                th:text="${col.columnName}">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${rows}">
+            <td th:each="col, colStat : ${columns}"
+                th:class="${#strings.concat(colStat.first ? 'radius-left ' : '', colStat.last ? ' radius-right' : '')}"
+                th:style="'grid-column: span ' + ${col.span} + '; text-align: center;'"
+                th:text="${row.get(col.columnKey)}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Invoice Summary -->
+<table style="width: 33.34%; float: right;">
+    <tr style="width: 100%; padding: 0;">
+        <!-- Subtotal -->
+        <td style="padding: 0;">
+            <p style="margin: 0;">Subtotal: </p>
+        </td>
+        <td style="text-align: right; padding: 0;">
+            <p style="margin: 0;">$<span>[[${subtotal}]]</span></p>
+        </td>
+    </tr>
+
+    <!-- Discount -->
+    <tr th:if="${discount != null and discount.type != ''}" style="width: 100%;">
+        <td style="padding: 0;">
+            <p style="margin: 0;" th:text="'Applied Discount:'"></p>
+        </td>
+        <td style="text-align: right; margin: 0; padding: 0;">
+            <p th:if="${discount.type == 'Amount'}" style="margin: 0;">$<span th:text="${discount.amount}"></span></p>
+            <p th:if="${discount.type == 'Percentage'}" style="margin: 0;"><span
+                    th:text="${discount.percentage}"></span>%</p>
+        </td>
+    </tr>
+
+    <!-- Tax -->
+    <tr style="width: 100%;">
+        <td style="padding: 0;">
+            <p style="margin: 0;">Tax: </p>
+        </td>
+        <td style="text-align: right; margin: 0; padding: 0;">
+            <p style="margin: 0;">$<span class="tax">[[${tax}]]</span></p>
+        </td>
+    </tr>
+
+    <!-- Grand Total -->
+    <tr style="width: 100%;">
+        <td style="font-weight: bold; padding-top: 0; padding-bottom: 0;">
+            <p style="margin: 0;">Grand Total: </p>
+        </td>
+        <td style="text-align: right; font-weight: bold; padding-top: 0; padding-bottom: 0;">
+            <p style="margin: 0;">$<span>[[${totalPrice}]]</span></p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

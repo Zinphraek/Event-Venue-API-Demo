@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Reservation Schedule Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .subject {
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    Dear <span th:text="${customerName}">Customer's Name</span>,
+</p>
+
+<p>
+    Thank you for choosing Le Prestige Hall for
+    your event. We are pleased to inform you that your reservation request for <span
+        th:text="${#temporals.format(reservationDate, 'MMMM dd, yyyy')}"></span> at <span
+        th:text="${#temporals.format(reservationDate, 'hh:mm a')}"></span>. has been received and processed.
+    Please call the customer service phone number below for more information on how to make the security deposit.
+    You can disregard this action if you have already made the security deposit.
+</p>
+
+<p>
+    For your convenience, we have attached the invoice related to your reservation, and it can also be
+    accessed through your <a th:href="${accountLink}">online account</a>.
+    Please review the details to ensure everything aligns with your expectations.
+    Should you notice any discrepancies or have any questions, please don't hesitate to
+    reach out to our customer service team by phone at <span
+        th:text="${customerServicePhoneNumber}"></span>
+    or by <a th:href="'mailto:' + ${customerServiceEmail}">email</a>
+</p>
+
+<p>
+    Thank you for your trust in us.
+    We look forward to providing you with an exceptional experience.
+</p>
+
+<p>Warm regards,</p>
+
+<p>
+    Le Prestige Hall, Inc<br>
+</p>
+
+<p><strong>Note:</strong> Please check the attached invoice for detailed information.</p>
+
+
+</body>
+</html>

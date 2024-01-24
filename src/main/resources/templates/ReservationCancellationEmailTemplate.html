@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Reservation Cancellation Confirmation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div>
+    <p>Dear <span th:text="${customerName}">Recipient Name</span>,</p>
+
+    <p>We hope this message finds you well.</p>
+
+    <p>We are writing to confirm the cancellation of your reservation with Le Prestige Hall, Inc.
+        Please review the details below to ensure everything is accurate:</p>
+
+    <ul>
+        <li><strong>Date of Reservation:</strong> <span
+                th:text="${#temporals.format(reservationDate, 'MMMM dd, yyyy')}"></span></li>
+        <li><strong>Time:</strong> <span th:text="${#temporals.format(reservationDate, 'hh:mm a')}"></span></li>
+        <li><strong>Number of Guests:</strong> <span th:text="${guestCount}">guest count</span>
+        </li>
+    </ul>
+
+    <p>Here are a few key points regarding your cancellation:</p>
+    <ol>
+        <li>Depending on the notice given and our cancellation policy, any deposits or pre-payments may
+            be refunded in full or partially. You will be notified separately regarding any applicable
+            refunds.
+        </li>
+        <li>If you wish to make another reservation in the future, we would be delighted to accommodate
+            you. Simply reach out to us or use our <a th:href="${websiteLink}">online booking system.</a>
+        </li>
+        <li>We truly value feedback. If there were specific reasons for your cancellation, sharing them
+            with us would greatly help in enhancing our services. You can provide your feedback through
+            our <a th:href="${feedbackFormLink}">feedback form</a>.
+        </li>
+    </ol>
+
+    <p>We regret that we won't have the opportunity to serve you on this occasion, but understand that
+        plans can change. Thank you for considering Le Prestige Hall, Inc.
+        for your plans, and we hope to welcome you in the near future.</p>
+
+    <p>Should you have any questions or require further assistance, please don't hesitate to <a
+            th:href="'mailto:' + ${customerServiceEmail}">email</a> or call
+        our customer service team at <span th:text="${customerServicePhoneNumber}"></span>.</p>
+
+    <p>Warm regards,<br/></p>
+    <p>Le Prestige Hall, Inc.</p>
+</div>
+
+</body>
+</html>
