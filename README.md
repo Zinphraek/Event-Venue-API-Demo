@@ -38,11 +38,14 @@ Users can also share their experiences by posting reviews and rating the venue.
    * Create a client with a name id of your choice.
    * In the web origin section enter `http://localhoast:8085`, or the port and address you will be using to run the project.
 * Open the project in your IDE
+   * You can either use a key vault (demo profile) to store all the secrets or use a `.env` file (local profile) to store those values.
    * Create a PostgreSQL database, and update the application.yml file with your database credentials
    * Create a Blob storage account, and update the application.yml file with your storage account credentials
    * Update the application.yml file with your email credentials
    * Update the application.yml file with your JWT secret key
    * Update all email information defined in the constants class in the constants package
+** Note:
+      If you choose the key vault route, make sure to use the right implementation. I used Azure Key vault and Azure Spring cloud in this project.
 * Run the project
 
 # API Documentation
@@ -131,7 +134,7 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get user by id
 
-##### Request
+#### Request
 
 `GET /api/users/{id}`
 
@@ -146,13 +149,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Update user
 
-##### Request
+#### Request
 
 `PUT /api/users/{id}`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&email=email&username=username&password=password&role=role' http://localhost:8085/api/users/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -161,13 +164,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Delete user
 
-##### Request
+#### Request
 
 `DELETE /api/users/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/users/1
 
-##### Response
+#### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -178,13 +181,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get all appointments
 
-##### Request
+#### Request
 
 `GET /api/appointments`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -205,13 +208,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get appointment by id
 
-##### Request
+#### Request
 
 `GET /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -230,13 +233,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Create appointment
 
-##### Request
+#### Request
 
 `POST /api/appointments`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&phone=phone&email=email&dateTime=dateTime&raison=raison&additionalInfo=additionalInfo' http://localhost:8085/api/appointments
 
-##### Response
+#### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -246,13 +249,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Update appointment
 
-##### Request
+#### Request
 
 `PUT /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&phone=phone&email=email&dateTime=dateTime&raison=raison&additionalInfo=additionalInfo' http://localhost:8085/api/appointments/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -261,13 +264,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Cancel appointment
 
-##### Request
+#### Request
 
 `DELETE /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments/1
 
-##### Response
+#### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -279,13 +282,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get all reservations
 
-##### Request
+#### Request
 
 `GET /api/reservations`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reservations
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -322,13 +325,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get reservation by user id
 
-##### Request
+#### Request
 
 `GET /api/user/{userId}/reservations
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/user/userId/reservations
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -364,13 +367,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Create reservation
 
-##### Request
+#### Request
 
 `POST /api/reservations`
 
     curl -i -H 'Accept: application/json' -d 'startingDateTime=startingDateTime&endingDateTime=endingDateTime&effectiveEndingDateTime=effectiveEndingDateTime&eventType=eventType&numberOfSeats=numberOfSeats&addOns=addOns&addOnsTotalCost=addOnsTotalCost&status=status&fullPackage=fullPackage&securityDepositRefunded=securityDepositRefunded&subTotal=subTotal&taxRate=taxRate&totalPrice=totalPrice&rates=rates&priceComputationMethod=priceComputationMethod&userId=userId' http://localhost:8085/api/reservations
 
-##### Response
+#### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -380,13 +383,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Update reservation
 
-##### Request
+#### Request
 
 `PUT /api/reservations/{id}`
 
     curl -i -H 'Accept: application/json' -d 'startingDateTime=startingDateTime&endingDateTime=endingDateTime&effectiveEndingDateTime=effectiveEndingDateTime&eventType=eventType&numberOfSeats=numberOfSeats&addOns=addOns&addOnsTotalCost=addOnsTotalCost&status=status&fullPackage=fullPackage&securityDepositRefunded=securityDepositRefunded&subTotal=subTotal&taxRate=taxRate&totalPrice=totalPrice&rates=rates&priceComputationMethod=priceComputationMethod&userId=userId' http://localhost:8085/api/reservations/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -396,13 +399,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Cancel reservation
 
-##### Request
+#### Request
 
 `DELETE /api/reservations/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reservations/1
 
-##### Response
+#### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -415,13 +418,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get all reviews
 
-##### Request
+#### Request
 
 `GET /api/reviews`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -448,14 +451,14 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 #### Get review by id
 
 
-##### Request
+#### Request
 
 `GET /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews/1
 
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -479,13 +482,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Create review
 
-##### Request
+#### Request
 
 `POST /api/reviews`
 
     curl -i -H 'Accept: application/json' -d 'title=title&comment=comment&rating=rating&user=userSumaryDTO' http://localhost:8085/api/reviews
 
-##### Response
+#### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -495,13 +498,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Update review
 
-##### Request
+#### Request
 
 `PUT /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' -d 'title=title&comment=comment&rating=rating&user=userSumaryDTO' http://localhost:8085/api/reviews/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -511,13 +514,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Delete review
 
-##### Request
+#### Request
 
 `DELETE /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews/1
 
-##### Response
+#### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -532,13 +535,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get all FAQs
 
-##### Request
+#### Request
 
 `GET /api/faqs`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -555,14 +558,14 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get FAQ by id
 
-##### Request
+#### Request
 
 `GET /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs/1
 
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -578,13 +581,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Create FAQ
 
-##### Request
+#### Request
 
 `POST /api/faqs`
 
     curl -i -H 'Accept: application/json' -d 'question=question&answer=answer&moreDetails=moreDetails' http://localhost:8085/api/faqs
 
-##### Response
+#### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -594,13 +597,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Update FAQ
 
-##### Request
+#### Request
 
 `PUT /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' -d 'question=question&answer=answer&moreDetails=moreDetails' http://localhost:8085/api/faqs/1
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -610,13 +613,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Delete FAQ
 
-##### Request
+#### Request
 
 `DELETE /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs/1
 
-##### Response
+#### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -629,13 +632,13 @@ The UserSummaryDTO is a DTO that represents a user summary in the system. It has
 
 #### Get all comments by event id
 
-##### Request
+#### Request
 
 `GET /api/events/{id}/comments`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/events/1/comments
 
-##### Response
+#### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
