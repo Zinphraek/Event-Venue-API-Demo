@@ -47,64 +47,95 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 # API Documentation
 
-## Authentication
+## Entities and DTOs
 
-### Register
+### User Class Entity
 
-### Login
+#### User
+The User entity represents a user in the system. It has the following fields:
 
-#### Request
+- `id`: A unique identifier for the user.
+- `userId`: A unique user ID.
+- `firstName`: The user's first name.
+- `lastName`: The user's last name.
+- `email`: The user's email address.
+- `username`: The user's username.
+- `phone`: The user's phone number.
+- `dateOfBirth`: The user's date of birth.
+- `gender`: The user's gender.
+- `street`: The user's street address.
+- `city`: The user's city.
+- `state`: The user's state.
+- `zipCode`: The user's zip code.
+- `userMedia`: The user's media information.
+- `enabled`: A boolean indicating whether the user's account is enabled.
 
-`POST /api/auth/login`
+### UserSummaryDTO
 
-    curl -i -H 'Accept: application/json' -d 'username=username&password=password' http://localhost:8080/api/auth/login
+The UserSummaryDTO is a DTO that represents a user summary in the system. It has the following fields:
 
-#### Response
-    
-        HTTP/1.1 200 OK
-        Date: Mon, 01 Jan 2021 00:00:00 GMT
-        Content-Type: application/json
-        Content-Length: 0
+- `userId`: A unique user ID.
+- `firstName`: The user's first name.
+- `lastName`: The user's last name.
+- `profilePictureUrl`: The user's profile picture URL.
 
-### Logout
+## Request and Response Models
 
-#### Request
+### Users
 
-`POST /api/auth/logout`
+#### Get all users
 
-    curl -i -H 'Accept: application/json' -d 'username=username&password=password' http://localhost:8080/api/auth/logout
-
-#### Response
-    
-        HTTP/1.1 200 OK
-        Date: Mon, 01 Jan 2021 00:00:00 GMT
-        Content-Type: application/json
-        Content-Length: 0
-
-## Users
-
-### Get all users
-
-#### Request
+##### Request
 
 `GET /api/users`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/users
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
-        Date: Mon, 01 Jan 2021 00:00:00 GMT
+        Date: Mon, 01 Jan 2024 00:00:00 GMT
         Content-Type: application/json
-        Content-Length: 0
+        {
+            content: [
+                        User,
+                    ],
+            pageable: 
+                    {
+                        sort: 
+                            {
+                                empty: false,
+                                unsorted: false,
+                                sorted: true,
+                            },            
+                        offset: 0,
+                        pageSize: 10,
+                        pageNumber: 0,
+                        paged: true,
+                        unpaged: false,
+                    },  
+            totalPages: 0,
+            totalElements: 0,
+            last: true,
+            size: 10,
+            number: 0,
+            sort: {
+            empty: false,
+            unsorted: false,
+            sorted: true,
+            },
+            first: true,
+            numberOfElements: 0,
+            empty: true,
+        }
 
-### Get user by id
+#### Get user by id
 
-#### Request
+##### Request
 
 `GET /api/users/{id}`
 
-    curl -i -H 'Accept: application/json' http://localhost:8085/api/users/1
+    curl -i -H 'Accept: application/json' http://localhost:8085/api/users/userId
 
 #### Response
 
@@ -113,47 +144,47 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Type: application/json
         Content-Length: 0
 
-### Update user
+#### Update user
 
-#### Request
+##### Request
 
 `PUT /api/users/{id}`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&email=email&username=username&password=password&role=role' http://localhost:8085/api/users/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
         Content-Type: application/json
         Content-Length: 0
 
-### Delete user
+#### Delete user
 
-#### Request
+##### Request
 
 `DELETE /api/users/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/users/1
 
-#### Response
+##### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
         Content-Type: application/json
         Content-Length: 0
 
-## Appointments
+### Appointments
 
-### Get all appointments
+#### Get all appointments
 
-#### Request
+##### Request
 
 `GET /api/appointments`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -172,15 +203,15 @@ Users can also share their experiences by posting reviews and rating the venue.
             }
         ]
 
-### Get appointment by id
+#### Get appointment by id
 
-#### Request
+##### Request
 
 `GET /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -197,15 +228,15 @@ Users can also share their experiences by posting reviews and rating the venue.
             "additionalInfo": "additionalInfo",
         }
 
-### Create appointment
+#### Create appointment
 
-#### Request
+##### Request
 
 `POST /api/appointments`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&phone=phone&email=email&dateTime=dateTime&raison=raison&additionalInfo=additionalInfo' http://localhost:8085/api/appointments
 
-#### Response
+##### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -213,30 +244,30 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Update appointment
+#### Update appointment
 
-#### Request
+##### Request
 
 `PUT /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' -d 'firstName=firstName&lastName=lastName&phone=phone&email=email&dateTime=dateTime&raison=raison&additionalInfo=additionalInfo' http://localhost:8085/api/appointments/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
         Content-Type: application/json
         Content-Length: 0
 
-### Cancel appointment
+#### Cancel appointment
 
-#### Request
+##### Request
 
 `DELETE /api/appointments/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/appointments/1
 
-#### Response
+##### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -244,17 +275,17 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-## Reservations
+### Reservations
 
-### Get all reservations
+#### Get all reservations
 
-#### Request
+##### Request
 
 `GET /api/reservations`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reservations
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -289,15 +320,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Get reservation by user id
+#### Get reservation by user id
 
-#### Request
+##### Request
 
 `GET /api/user/{userId}/reservations
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/user/userId/reservations
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -331,15 +362,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Create reservation
+#### Create reservation
 
-#### Request
+##### Request
 
 `POST /api/reservations`
 
     curl -i -H 'Accept: application/json' -d 'startingDateTime=startingDateTime&endingDateTime=endingDateTime&effectiveEndingDateTime=effectiveEndingDateTime&eventType=eventType&numberOfSeats=numberOfSeats&addOns=addOns&addOnsTotalCost=addOnsTotalCost&status=status&fullPackage=fullPackage&securityDepositRefunded=securityDepositRefunded&subTotal=subTotal&taxRate=taxRate&totalPrice=totalPrice&rates=rates&priceComputationMethod=priceComputationMethod&userId=userId' http://localhost:8085/api/reservations
 
-#### Response
+##### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -347,15 +378,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Update reservation
+#### Update reservation
 
-#### Request
+##### Request
 
 `PUT /api/reservations/{id}`
 
     curl -i -H 'Accept: application/json' -d 'startingDateTime=startingDateTime&endingDateTime=endingDateTime&effectiveEndingDateTime=effectiveEndingDateTime&eventType=eventType&numberOfSeats=numberOfSeats&addOns=addOns&addOnsTotalCost=addOnsTotalCost&status=status&fullPackage=fullPackage&securityDepositRefunded=securityDepositRefunded&subTotal=subTotal&taxRate=taxRate&totalPrice=totalPrice&rates=rates&priceComputationMethod=priceComputationMethod&userId=userId' http://localhost:8085/api/reservations/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -363,15 +394,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Cancel reservation
+#### Cancel reservation
 
-#### Request
+##### Request
 
 `DELETE /api/reservations/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reservations/1
 
-#### Response
+##### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -380,17 +411,17 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 
 
-## Reviews
+### Reviews
 
-### Get all reviews
+#### Get all reviews
 
-#### Request
+##### Request
 
 `GET /api/reviews`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -414,17 +445,17 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Get review by id
+#### Get review by id
 
 
-#### Request
+##### Request
 
 `GET /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews/1
 
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -446,15 +477,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         }
 
 
-### Create review
+#### Create review
 
-#### Request
+##### Request
 
 `POST /api/reviews`
 
     curl -i -H 'Accept: application/json' -d 'title=title&comment=comment&rating=rating&user=userSumaryDTO' http://localhost:8085/api/reviews
 
-#### Response
+##### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -462,15 +493,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Update review
+#### Update review
 
-#### Request
+##### Request
 
 `PUT /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' -d 'title=title&comment=comment&rating=rating&user=userSumaryDTO' http://localhost:8085/api/reviews/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -478,15 +509,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Delete review
+#### Delete review
 
-#### Request
+##### Request
 
 `DELETE /api/reviews/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/reviews/1
 
-#### Response
+##### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -497,17 +528,17 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 
 
-## FAQs
+### FAQs
 
-### Get all FAQs
+#### Get all FAQs
 
-#### Request
+##### Request
 
 `GET /api/faqs`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -522,16 +553,16 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Get FAQ by id
+#### Get FAQ by id
 
-#### Request
+##### Request
 
 `GET /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs/1
 
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -545,15 +576,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         }
 
 
-### Create FAQ
+#### Create FAQ
 
-#### Request
+##### Request
 
 `POST /api/faqs`
 
     curl -i -H 'Accept: application/json' -d 'question=question&answer=answer&moreDetails=moreDetails' http://localhost:8085/api/faqs
 
-#### Response
+##### Response
 
         HTTP/1.1 201 Created
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -561,15 +592,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Update FAQ
+#### Update FAQ
 
-#### Request
+##### Request
 
 `PUT /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' -d 'question=question&answer=answer&moreDetails=moreDetails' http://localhost:8085/api/faqs/1
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -577,15 +608,15 @@ Users can also share their experiences by posting reviews and rating the venue.
         Content-Length: 0
 
 
-### Delete FAQ
+#### Delete FAQ
 
-#### Request
+##### Request
 
 `DELETE /api/faqs/{id}`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/faqs/1
 
-#### Response
+##### Response
 
         HTTP/1.1 204 No Content
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -594,17 +625,17 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 
 
-## Comments
+### Comments
 
-### Get all comments by event id
+#### Get all comments by event id
 
-#### Request
+##### Request
 
 `GET /api/events/{id}/comments`
 
     curl -i -H 'Accept: application/json' http://localhost:8085/api/events/1/comments
 
-#### Response
+##### Response
 
         HTTP/1.1 200 OK
         Date: Mon, 01 Jan 2021 00:00:00 GMT
@@ -630,7 +661,7 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Get all comments by based comment id
+#### Get all comments by based comment id
 
 #### Request
 
@@ -664,7 +695,7 @@ Users can also share their experiences by posting reviews and rating the venue.
         ]
 
 
-### Get comment by id
+#### Get comment by id
 
 #### Request
 
@@ -696,7 +727,7 @@ Users can also share their experiences by posting reviews and rating the venue.
         }
 
 
-### Create comment
+#### Create comment
 
 #### Request
 
@@ -716,8 +747,7 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 # Notes.
 
-This project is still in progress (mainly the tests suites). However, the API and the UIs are fully functional.
-The time to complete the tests suites and deploy the project is estimated to be 2 months.
+This project is still in progress (mainly the tests suites and the API Documentation section of the README file).
 
 # UIs repositories links.
 
