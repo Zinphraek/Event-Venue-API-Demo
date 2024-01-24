@@ -716,8 +716,7 @@ Users can also share their experiences by posting reviews and rating the venue.
 
 # Notes.
 
-This project is still in progress (mainly the tests suites). However, the API and the UIs are fully functional.
-The time to complete the tests suites and deploy the project is estimated to be 2 months.
+This project is still in progress (mainly the tests suites).
 
 # UIs repositories links.
 
