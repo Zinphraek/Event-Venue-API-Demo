@@ -38,11 +38,14 @@ Users can also share their experiences by posting reviews and rating the venue.
    * Create a client with a name id of your choice.
    * In the web origin section enter `http://localhoast:8085`, or the port and address you will be using to run the project.
 * Open the project in your IDE
+   * You can either use a key vault (demo profile) to store all the secrets or use a `.env` file (local profile) to store those values.
    * Create a PostgreSQL database, and update the application.yml file with your database credentials
    * Create a Blob storage account, and update the application.yml file with your storage account credentials
    * Update the application.yml file with your email credentials
    * Update the application.yml file with your JWT secret key
    * Update all email information defined in the constants class in the constants package
+** Note:
+      If you choose the key vault route, make sure to use the right implementation. I used Azure Key vault and Azure Spring cloud in this project.
 * Run the project
 
 # API Documentation
